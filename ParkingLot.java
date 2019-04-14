@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class ParkingLot{
 
-	Integer nextSlot;
-	Integer numberOfSlot;
-	Car[] parkingSlots;
+	Integer nextSlot;			// Index for next parking slot, **Assumption nextSlot is always the smallest index 
+	Integer numberOfSlot;     	// Number of Slot in parking Lot
+	Car[] parkingSlots;			// Parking Slot to save array
 	
 	public ParkingLot(int numberOfSlot){
 		this.numberOfSlot = numberOfSlot;
-		parkingSlots = new Car[numberOfSlot];
-		nextSlot = 1;
+		parkingSlots = new Car[numberOfSlot];		// Initialize array Parking Slots
+		nextSlot = 1;								// Set next slot to 1, since every parking slot is empty
 		System.out.println("Created a parking lot with " + numberOfSlot + " slots");
 	}
 	
@@ -22,15 +22,17 @@ public class ParkingLot{
 	}
 	
 	public void park(String registrationNumber, String colour){
-		if (nextSlot==null) {
+		if (nextSlot==null) {		// if next slots value is null, parking slot is full.
 			System.out.println("Sorry, parking lot is full");
 		} else {
-			Car newCar = new Car(registrationNumber, colour);
-			parkingSlots[nextSlot-1] = newCar;
+			Car newCar = new Car(registrationNumber, colour);	// Create new car
+			parkingSlots[nextSlot-1] = newCar;					// Set the car at nextSlot index
 			System.out.println("Allocated slot number: " + nextSlot);
-			while (parkingSlots[nextSlot-1]!=null) {
+			
+			while (parkingSlots[nextSlot-1]!=null) {			// Search for next slot, iterate until we find empty slots
 				nextSlot++;
-				if (nextSlot > numberOfSlot) {
+				if (nextSlot > numberOfSlot) {					// if no
+					
 					nextSlot = null;
 					break;
 				}
@@ -85,8 +87,8 @@ public class ParkingLot{
 		if (tempArrayList.isEmpty()) {
 			System.out.println("Not Found");
 		} else {
-			String allRegistrationNumberString = String.join(", ", tempArrayList);
-			System.out.println(allRegistrationNumberString);
+			String allSlotsNumberString = String.join(", ", tempArrayList);
+			System.out.println(allSlotsNumberString);
 		}
 	}
 
@@ -101,8 +103,8 @@ public class ParkingLot{
 		if (tempArrayList.isEmpty()) {
 			System.out.println("Not Found");
 		} else {
-			String allRegistrationNumberString = String.join(", ", tempArrayList);
-			System.out.println(allRegistrationNumberString);
+			String allSlotsNumberString = String.join(", ", tempArrayList);
+			System.out.println(allSlotsNumberString);
 		}
 	}	
 	
